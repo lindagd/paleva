@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Paleva" %></title>
+    <title><%= content_for(:title) || "PaLevá" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
@@ -19,7 +19,24 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <nav class="bg-green-200 flex items-center justify-around">
+          <div class="max-w-screen-xl flex flex-wrap">
+            <%= link_to 'PaLevá', root_path, class: '' %>
+          </div>
+          <div class="flex justify-between">
+            <%= current_user.name %> <%= current_user.surname %>
+            <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+          </div>
+        </nav>
+      <% end %>
+    </header>
+
     <main class="container mx-auto mt-28 px-5 flex">
+      <span class="font-semibold mr-2 text-left flex-auto"><%= alert %></span>
+      <span class="font-semibold mr-2 text-left flex-auto"><%= notice %></span>
+      
       <%= yield %>
     </main>
   </body>

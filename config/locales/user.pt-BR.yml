@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    attributes:
+      user:
+        name: 'Nome'
+        surname: 'Sobrenome'
+        social_security_number: 'CPF'
