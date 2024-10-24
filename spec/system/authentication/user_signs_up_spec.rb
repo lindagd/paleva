@@ -14,7 +14,7 @@ describe 'User signs up' do
       click_on 'Criar conta'
     end
 
-    expect(page).to have_content 'Boas vindas! Cadastro realizado com sucesso'
+    expect(page).to have_content 'Boas vindas! Cadastre seu estabelecimento antes de continuar.'
     within('nav') do
       expect(page).to have_button 'Sair'
       expect(page).not_to have_link 'Entrar'
@@ -74,5 +74,22 @@ describe 'User signs up' do
     end
 
     expect(page).to have_content 'Senha é muito curto (mínimo: 12 caracteres)'
+  end
+
+  it 'and is redirected to establishment registration page' do
+    visit root_path
+    click_on 'Criar conta'
+    within('form') do
+      fill_in 'Nome', with: 'Norma'
+      fill_in 'Sobrenome', with: 'Blum'
+      fill_in 'CPF', with: '70615592090'
+      fill_in 'E-mail', with: 'norma@email.com'
+      fill_in 'Senha', with: 'password1234'
+      fill_in 'Confirme sua senha', with: 'password1234'
+      click_on 'Criar conta'
+    end
+
+    expect(page).to have_content 'Boas vindas! Cadastre seu estabelecimento antes de continuar.'
+    expect(current_path).to eq new_establishment_path
   end
 end

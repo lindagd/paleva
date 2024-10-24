@@ -12,7 +12,7 @@ describe 'User signs in' do
       click_on 'Entrar'
     end
 
-    expect(page).to have_content 'Login efetuado com sucesso.'
+    expect(page).to have_content 'Boas vindas!'
     within('nav') do
       expect(page).to have_button 'Sair'
       expect(page).to have_content 'Norma Blum'  

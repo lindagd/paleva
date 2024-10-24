@@ -3,6 +3,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :role, optional: true
+  has_one :establishment
 
   validates :name, :surname, :social_security_number, presence: true
   validates :social_security_number, uniqueness: true,
