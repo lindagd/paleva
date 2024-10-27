@@ -1,0 +1,38 @@
+<h1>Horários de Funcionamento</h1>
+
+<% if @opening_hours.empty? %>
+  <p>Não foram cadastrados horários de funcionamento</p>
+<% else %>
+<div class="flex justify-center">
+  <table class="table-auto text-left">
+    <% OpeningHour.week_days.each do |day, value| %>
+      <% opening_hour = @opening_hours.find_by(week_day: day) %>
+      <tr id="<%= day %>">
+        <td><strong><%= OpeningHour.human_attribute_name("week_day.#{day}") %>: </strong></td>
+        
+        <% if opening_hour&.open? %>
+          <td>
+            <%= opening_hour.open_time.strftime('%H:%M') %> - <%= opening_hour.close_time.strftime('%H:%M') %>
+          </td>
+          <td><%= link_to 'Editar', edit_opening_hour_path(opening_hour.id) %></td>
+        <% elsif opening_hour&.status == 'closed' %>
+          <td>
+            <%= OpeningHour.human_attribute_name('status.closed') %>
+          </td>
+          <td><%= link_to 'Editar', edit_opening_hour_path(opening_hour.id) %></td>
+        <% else %>
+          <td>Não há horário cadastrado nesse dia</td>
+         
+        <% end %>
+
+      </tr>
+    <% end %>
+  </table>
+</div>
+<% end %>
+
+<% if @opening_hours.length < 7 %>
+  <p><%= link_to 'Cadastrar Horários de Funcionamento', new_opening_hour_path %></p>
+<% end %>
+
+<%= link_to 'Voltar', root_path %>

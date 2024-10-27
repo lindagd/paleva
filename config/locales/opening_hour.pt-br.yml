@@ -1,0 +1,20 @@
+pt-BR:
+  activerecord:
+    models:
+      opening_hour: 'Horário de Funcionamento'
+    attributes:
+      opening_hour:
+        week_day: 'Dia'
+        open_time: 'Abre às'
+        close_time: 'Fecha às'
+      opening_hour/week_day:
+        sunday: "Domingo"
+        monday: "Segunda-feira"
+        tuesday: "Terça-feira"
+        wednesday: "Quarta-feira"
+        thursday: "Quinta-feira"
+        friday: "Sexta-feira"
+        saturday: "Sábado"
+      opening_hour/status:
+        open: Aberto
+        closed: Fechado

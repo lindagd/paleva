@@ -1,0 +1,17 @@
+pt-BR:
+  activerecord:
+    models:
+      establishment: 'Estabelecimento'
+    attributes:
+      establishment:
+        trade_name: 'Nome Fantasia'
+        corporate_name: 'Razão Social'
+        registration_number: 'CNPJ'
+        city: 'Cidade'
+        state: 'Estado'
+        zip: 'CEP'
+        address: 'Endereço'
+        phone_number: 'Telefone'
+        email: 'E-mail'
+        show: 'Detalhes'
+        user: 'Proprietário(a)'

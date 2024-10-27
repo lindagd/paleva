@@ -1,0 +1,37 @@
+<h1>Cadastrar Horário de Funcionamento</h1>
+<p>*Só é possível cadastrar um horário para cada dia da semana</p>
+
+<% if @opening_hour.errors.any? %>
+  <p>Verifique os erros abaixo:</p>
+  <ul>
+    <% @opening_hour.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @opening_hour do |f| %>
+  <div>
+    <%= f.label :week_day %>
+    <%= f.collection_select :week_day, OpeningHour.week_days.map { |day, value| [OpeningHour.human_attribute_name("week_day.#{day}"), day] }, :second, :first, prompt: "Selecione o dia da semana" %>
+  </div>
+  
+  <div>
+    <%= f.label :open_time %>
+    <%= f.time_field :open_time %>
+  </div>
+  
+  <div>
+    <%= f.label :close_time %>
+    <%= f.time_field :close_time %>
+  </div>
+
+  <div>
+    <%= f.label :status, 'Fechado' %>
+    <%= f.check_box :status, {}, 'closed', 'open' %>
+  </div>
+
+  <%= f.submit 'Salvar' %>
+<% end %>
+
+<%= link_to 'Voltar', opening_hours_path %>

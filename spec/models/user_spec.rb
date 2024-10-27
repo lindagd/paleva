@@ -97,4 +97,13 @@ RSpec.describe User, type: :model do
       expect(user.role.description).to eq 'Dono de estabelecimento'
     end
   end
+
+  describe '#full_name' do
+    it 'displays name and surname' do
+      user = User.new(name: 'Gal', surname: 'Costa')
+
+      expect(user.full_name).to eq 'Gal Costa'
+    end    
+  end
+  
 end

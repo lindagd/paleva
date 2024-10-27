@@ -21,23 +21,34 @@
   <body>
     <header>
       <% if user_signed_in? %>
-        <nav class="bg-green-200 flex items-center justify-around">
-          <div class="max-w-screen-xl flex flex-wrap">
-            <%= link_to 'PaLevá', root_path, class: '' %>
-          </div>
-          <div class="flex justify-between">
-            <%= current_user.name %> <%= current_user.surname %>
-            <%= button_to 'Sair', destroy_user_session_path, method: :delete %>
+        <nav class="bg-blue-500">
+          <div class="flex justify-around items-center py-4 text-white">
+            <div class="flex items-center space-x-6">
+              <%= link_to 'PaLevá', root_path, class: 'text-2xl font-bold' %>
+              <% if current_user.establishment&.valid? %>
+                <%= link_to "#{current_user.establishment.trade_name}: #{Establishment.human_attribute_name(:show)}", establishment_path(current_user.establishment.id) %>
+                <%= link_to "Horários de Funcionamento", opening_hours_path %>
+              <% end %>
+            </div>
+            <div class="flex items-center space-x-6">
+              <span><%= current_user.name %> <%= current_user.surname %></span>
+              <%= button_to 'Sair', destroy_user_session_path, method: :delete,
+                            class: 'bg-blue-700 px-2 py-1 rounded' %>
+            </div>
           </div>
         </nav>
       <% end %>
     </header>
 
-    <main class="container mx-auto mt-28 px-5 flex">
-      <span class="font-semibold mr-2 text-left flex-auto"><%= alert %></span>
-      <span class="font-semibold mr-2 text-left flex-auto"><%= notice %></span>
+    <main class="flex-col justify-center space-y-8 bg-gray-200">
+      <div class="text-center">
+        <span class="font-semibold text-red-600"><%= alert %></span>
+        <span class="font-semibold text-green-600"><%= notice %></span>
+      </div>
       
-      <%= yield %>
+      <div class="text-center space-y-4">
+        <%= yield %>
+      </div>
     </main>
   </body>
 </html>

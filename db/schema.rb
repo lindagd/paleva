@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_24_214403) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_26_210749) do
   create_table "establishments", force: :cascade do |t|
     t.string "trade_name"
     t.string "corporate_name"
@@ -23,7 +23,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_214403) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "state"
+    t.string "code"
     t.index ["user_id"], name: "index_establishments_on_user_id"
+  end
+
+  create_table "opening_hours", force: :cascade do |t|
+    t.integer "week_day", null: false
+    t.time "open_time"
+    t.time "close_time"
+    t.integer "status", default: 0
+    t.integer "establishment_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["establishment_id"], name: "index_opening_hours_on_establishment_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -50,5 +63,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_214403) do
   end
 
   add_foreign_key "establishments", "users"
+  add_foreign_key "opening_hours", "establishments"
   add_foreign_key "users", "roles"
 end

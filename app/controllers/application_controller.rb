@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_to_establishment_registration
-    in_exception_paths = [new_establishment_path, destroy_user_session_path].include?(request.path)
+    in_exception_paths = [new_establishment_path, destroy_user_session_path,
+                          establishments_path].include?(request.path)
 
     if current_user.establishment.nil? && !in_exception_paths
       msg = 'Boas vindas! Cadastre seu estabelecimento antes de continuar.'

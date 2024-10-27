@@ -12,6 +12,10 @@ class User < ApplicationRecord
 
   before_create :set_default_role
 
+  def full_name
+    "#{name} #{surname}"
+  end
+    
   private
   def social_security_number_is_valid
     return if social_security_number.blank?

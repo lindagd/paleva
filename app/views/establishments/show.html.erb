@@ -1,0 +1,17 @@
+<h1><%= @establishment.trade_name %></h1>
+
+<div>
+  <div>
+    <p><%= Establishment.human_attribute_name(:registration_number) %>: <%= @establishment.registration_number %></p>
+    <p><%= Establishment.human_attribute_name(:corporate_name) %>: <%= @establishment.corporate_name %></p>
+    <p><%= Establishment.human_attribute_name(:address) %>: <%= @establishment.full_address %></p>
+  </div>
+  <div>
+    <p><%= Establishment.human_attribute_name(:phone_number) %>: <%= @establishment.formatted_phone_number %></p>
+    <p><%= Establishment.human_attribute_name(:email) %>: <%= @establishment.email %></p>
+    <p><%= Establishment.human_attribute_name(:user) %>: <%= @establishment.user.full_name %></p>
+  </div>
+</div>
+
+<p><%= link_to 'Editar Estabelecimento', edit_establishment_path(@establishment) %></p>
+<p><%= link_to 'Voltar', root_path %></p>

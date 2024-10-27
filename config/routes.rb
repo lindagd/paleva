@@ -2,5 +2,6 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
 
-  resources :establishment, only: [:new, :create]
+  resources :establishments, only: [:new, :create, :show, :edit, :update]
+  resources :opening_hours, only: [:index, :new, :create, :edit, :update]
 end
