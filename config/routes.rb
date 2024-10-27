@@ -4,4 +4,7 @@ Rails.application.routes.draw do
 
   resources :establishments, only: [:new, :create, :show, :edit, :update]
   resources :opening_hours, only: [:index, :new, :create, :edit, :update]
+  resources :menu_items, only: [:index] do
+    get 'dishes', on: :collection
+  end
 end

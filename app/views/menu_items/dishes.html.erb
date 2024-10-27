@@ -1,0 +1,14 @@
+<h1>Pratos</h1>
+
+
+<% if @menu_items.empty? %>
+  <p>Não há pratos cadastrados.</p>
+<% else %>
+  <% @menu_items.each do |dish| %>
+    <div>
+      <h2><%= dish.name %></h2>
+      <p><%= dish.description %></p>
+      <p><%= dish.calories %> calorias</p>
+    </div>
+  <% end %>
+<% end %>

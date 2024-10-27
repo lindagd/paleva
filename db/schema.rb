@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_26_210749) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_27_190035) do
+  create_table "dishes", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "establishments", force: :cascade do |t|
     t.string "trade_name"
     t.string "corporate_name"
@@ -26,6 +31,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_210749) do
     t.string "state"
     t.string "code"
     t.index ["user_id"], name: "index_establishments_on_user_id"
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "calories"
+    t.integer "establishment_id", null: false
+    t.string "itemable_type", null: false
+    t.integer "itemable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["establishment_id"], name: "index_menu_items_on_establishment_id"
+    t.index ["itemable_type", "itemable_id"], name: "index_menu_items_on_itemable"
   end
 
   create_table "opening_hours", force: :cascade do |t|
@@ -63,6 +81,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_26_210749) do
   end
 
   add_foreign_key "establishments", "users"
+  add_foreign_key "menu_items", "establishments"
   add_foreign_key "opening_hours", "establishments"
   add_foreign_key "users", "roles"
 end

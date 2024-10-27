@@ -28,6 +28,7 @@
               <% if current_user.establishment&.valid? %>
                 <%= link_to "#{current_user.establishment.trade_name}: #{Establishment.human_attribute_name(:show)}", establishment_path(current_user.establishment.id) %>
                 <%= link_to "Horários de Funcionamento", opening_hours_path %>
+                <%= link_to "Pratos", dishes_menu_items_path %>
               <% end %>
             </div>
             <div class="flex items-center space-x-6">
